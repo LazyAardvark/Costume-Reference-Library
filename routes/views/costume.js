@@ -8,39 +8,38 @@ exports = module.exports = function (req, res) {
 	// Set locals
 	locals.section = 'library';
 	locals.filters = {
-		post: req.params.post,
+		costume: req.params.costume,
 	};
 	locals.data = {
-		posts: [],
+		costumes: [],
 	};
 
-	// Load the current post
+	// Load the current costume
 	view.on('init', function (next) {
 
-		var q = keystone.list('Post').model.findOne({
-			state: 'published',
-			slug: locals.filters.post,
-		}).populate('author detachments');
+		var q = keystone.list('Costume').model.findOne({
+			slug: locals.filters.costume,
+		}).populate('detachments');
 
 		q.exec(function (err, result) {
-			locals.data.post = result;
+			locals.data.costume = result;
 			next(err);
 		});
 
 	});
 
-	// Load other posts
+	// Load other costumes
 	view.on('init', function (next) {
 
-		var q = keystone.list('Post').model.find().where('state', 'published').sort('-publishedDate').populate('author').limit('4');
+		var q = keystone.list('Costume').model.find().where('state', 'published').sort('-publishedDate').populate('author').limit('4');
 
 		q.exec(function (err, results) {
-			locals.data.posts = results;
+			locals.data.costumes = results;
 			next(err);
 		});
 
 	});
 
 	// Render the view
-	view.render('post');
+	view.render('costume');
 };

@@ -5,15 +5,15 @@
 				<p><a href="/library">&larr; back to the library</a></p>
 				<hr>
 				<header>
-					<h1>{{data.post.title}}</h1>
+					<h1>{{data.costume.title}}</h1>
 					<h5>
-						{{{detachmentList data.post.categories prefix="Posted in "}}}
+						{{{detachmentList data.costume.categories prefix="Posted in "}}}
 						{{#if author.name.first}}by {{author.name.first}}{{/if}}
 					</h5>
 				</header>
-				<div class="post">
-					{{#if data.post.image}}<img src="{{{cloudinaryUrl data.post.image width=750 height=450 crop='fit' }}}" class="img-responsive">{{/if}}
-					{{{data.post.content.extended}}}
+				<div class="costume">
+					{{#if data.costume.image}}<img src="{{{cloudinaryUrl data.costume.image width=750 height=450 crop='fit' }}}" class="img-responsive">{{/if}}
+					{{{data.costume.content.extended}}}
 				</div>
 			</article>
 		</div>

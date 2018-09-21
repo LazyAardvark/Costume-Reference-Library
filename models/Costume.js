@@ -2,16 +2,16 @@ var keystone = require('keystone');
 var Types = keystone.Field.Types;
 
 /**
- * Post Model
+ * Costume Model
  * ==========
  */
 
-var Post = new keystone.List('Post', {
+var Costume = new keystone.List('Costume', {
 	map: { name: 'title' },
 	autokey: { path: 'slug', from: 'title', unique: true },
 });
 
-Post.add({
+Costume.add({
 	title: { type: String, required: true },
 	costume: {
 		image: { type: Types.CloudinaryImage },
@@ -27,9 +27,9 @@ Post.add({
 	detachments: { type: Types.Relationship, ref: 'Detachment', many: false },
 });
 
-Post.schema.virtual('content.full').get(function () {
+Costume.schema.virtual('content.full').get(function () {
 	return this.content.extended || this.content.brief;
 });
 
-Post.defaultColumns = 'title, state|20%, author|20%, publishedDate|20%';
-Post.register();
+Costume.defaultColumns = 'title, state|20%, author|20%, publishedDate|20%';
+Costume.register();

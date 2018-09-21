@@ -12,7 +12,7 @@ exports = module.exports = function (req, res) {
 		detachment: req.params.detachment,
 	};
 	locals.data = {
-		posts: [],
+		costumes: [],
 		detachments: [],
 	};
 
@@ -30,8 +30,8 @@ exports = module.exports = function (req, res) {
 			// Load the counts for each detachment
 			async.each(locals.data.detachments, function (detachment, next) {
 
-				keystone.list('Post').model.count().where('detachments').in([detachment.id]).exec(function (err, count) {
-					detachment.postCount = count;
+				keystone.list('Costume').model.count().where('detachments').in([detachment.id]).exec(function (err, count) {
+					detachment.costumeCount = count;
 					next(err);
 				});
 
@@ -54,26 +54,22 @@ exports = module.exports = function (req, res) {
 		}
 	});
 
-	// Load the posts
+	// Load the costumes
 	view.on('init', function (next) {
 
-		var q = keystone.list('Post').paginate({
+		var q = keystone.list('Costume').paginate({
 			page: req.query.page || 1,
 			perPage: 10,
 			maxPages: 10,
-			filters: {
-				state: 'published',
-			},
 		})
-			.sort('-publishedDate')
-			.populate('author detachments');
+			.populate(' detachments');
 
 		if (locals.data.detachment) {
 			q.where('detachments').in([locals.data.detachment]);
 		}
 
 		q.exec(function (err, results) {
-			locals.data.posts = results;
+			locals.data.costumes = results;
 			next(err);
 		});
 	});

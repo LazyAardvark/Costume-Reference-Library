@@ -83,7 +83,7 @@ module.exports = function () {
 	// *Usage example:*
 	// `{{detachmentList detachments separator=' - ' prefix='Filed under '}}`
 	//
-	// Returns an html-string of the detachments on the post.
+	// Returns an html-string of the detachments on the costume.
 	// By default, detachments are separated by commas.
 	// input. detachments:['tech', 'js']
 	// output. 'Filed Undder <a href="library/tech">tech</a>, <a href="library/js">js</a>'
@@ -142,10 +142,10 @@ module.exports = function () {
 		return new hbs.SafeString(output);
 	};
 
-	// Used to generate the link for the admin edit post button
+	// Used to generate the link for the admin edit costume button
 	_helpers.adminEditableUrl = function (user, options) {
 		var rtn = keystone.app.locals.editable(user, {
-			list: 'Post',
+			list: 'Costume',
 			id: options,
 		});
 		return rtn;
@@ -191,9 +191,9 @@ module.exports = function () {
 	// editing.  Should look at Django/Ghost which has an object layer to access
 	// the routes by keynames to reduce the maintenance of changing urls
 
-	// Direct url link to a specific post
-	_helpers.postUrl = function (postSlug, options) {
-		return ('/library/post/' + postSlug);
+	// Direct url link to a specific costume
+	_helpers.costumeUrl = function (costumeSlug, options) {
+		return ('/library/costume/' + costumeSlug);
 	};
 
 	// might be a ghost helper
@@ -212,16 +212,16 @@ module.exports = function () {
 	// Mostly generalized and with a small adjust to `_helper.pageUrl` could be universal for content types
 
 	/*
-	* expecting the data.posts context or an object literal that has `previous` and `next` properties
+	* expecting the data.costumes context or an object literal that has `previous` and `next` properties
 	* ifBlock helpers in hbs - http://stackoverflow.com/questions/8554517/handlerbars-js-using-an-helper-function-in-a-if-statement
 	* */
-	_helpers.ifHasPagination = function (postContext, options) {
+	_helpers.ifHasPagination = function (costumeContext, options) {
 		// if implementor fails to scope properly or has an empty data set
 		// better to display else block than throw an exception for undefined
-		if (_.isUndefined(postContext)) {
+		if (_.isUndefined(costumeContext)) {
 			return options.inverse(this);
 		}
-		if (postContext.next || postContext.previous) {
+		if (costumeContext.next || costumeContext.previous) {
 			return options.fn(this);
 		}
 		return options.inverse(this);

@@ -36,7 +36,7 @@ exports = module.exports = function (app) {
 	// Views
 	app.get('/', routes.views.index);
 	app.get('/library/:detachment?', routes.views.library);
-	app.get('/library/post/:post', routes.views.post);
+	app.get('/library/costume/:costume', routes.views.costume);
 
 	// NOTE: To protect a route so that only admins can see it, use the requireUser middleware:
 	// app.get('/protected', middleware.requireUser, routes.views.protected);

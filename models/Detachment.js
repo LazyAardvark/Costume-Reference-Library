@@ -17,6 +17,6 @@ Detachment.add({
 	link: { type: Types.Url, required: false},
 });
 
-Detachment.relationship({ ref: 'Post', path: 'posts', refPath: 'detachments' });
+Detachment.relationship({ ref: 'Costume', path: 'costumes', refPath: 'detachments' });
 
 Detachment.register();
