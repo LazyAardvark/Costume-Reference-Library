@@ -11,8 +11,8 @@ var handlebars = require('express-handlebars');
 // and documentation.
 
 keystone.init({
-	'name': 'Costume Reference Library',
-	'brand': 'Costume Reference Library',
+	'name': 'Imperial Costume Library',
+	'brand': 'Imperial Costume Library',
 
 	'sass': 'public',
 	'static': 'public',
@@ -54,7 +54,6 @@ keystone.set('routes', require('./routes'));
 // Configure the navigation bar in Keystone's Admin UI
 keystone.set('nav', {
 	posts: ['posts', 'post-categories'],
-	galleries: 'galleries',
 	users: 'users',
 });
 
