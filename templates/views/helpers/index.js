@@ -76,19 +76,19 @@ module.exports = function () {
 		return date;
 	};
 
-	// ### Category Helper
-	// Ghost uses Tags and Keystone uses Categories
+	// ### detachment Helper
+	// Ghost uses Tags and Keystone uses detachments
 	// Supports same interface, just different name/semantics
 	//
 	// *Usage example:*
-	// `{{categoryList categories separator=' - ' prefix='Filed under '}}`
+	// `{{detachmentList detachments separator=' - ' prefix='Filed under '}}`
 	//
-	// Returns an html-string of the categories on the post.
-	// By default, categories are separated by commas.
-	// input. categories:['tech', 'js']
+	// Returns an html-string of the detachments on the post.
+	// By default, detachments are separated by commas.
+	// input. detachments:['tech', 'js']
 	// output. 'Filed Undder <a href="blog/tech">tech</a>, <a href="blog/js">js</a>'
 
-	_helpers.categoryList = function (categories, options) {
+	_helpers.detachmentList = function (detachments, options) {
 		var autolink = _.isString(options.hash.autolink) && options.hash.autolink === 'false' ? false : true;
 		var separator = _.isString(options.hash.separator) ? options.hash.separator : ', ';
 		var prefix = _.isString(options.hash.prefix) ? options.hash.prefix : '';
@@ -109,8 +109,8 @@ module.exports = function () {
 			return _.escape(tagNames.join(separator));
 		}
 
-		if (categories && categories.length) {
-			output = prefix + createTagList(categories) + suffix;
+		if (detachments && detachments.length) {
+			output = prefix + createTagList(detachments) + suffix;
 		}
 		return new hbs.SafeString(output);
 	};
@@ -202,9 +202,9 @@ module.exports = function () {
 		return '/blog?page=' + pageNumber;
 	};
 
-	// create the category url for a blog-category page
-	_helpers.categoryUrl = function (categorySlug, options) {
-		return ('/blog/' + categorySlug);
+	// create the detachment url for a blog-detachment page
+	_helpers.detachmentUrl = function (detachmentSlug, options) {
+		return ('/blog/' + detachmentSlug);
 	};
 
 	// ### Pagination Helpers
