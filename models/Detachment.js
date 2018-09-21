@@ -1,4 +1,5 @@
 var keystone = require('keystone');
+var Types = keystone.Field.Types;
 
 /**
  * Detachment Model
@@ -11,6 +12,8 @@ var Detachment = new keystone.List('Detachment', {
 
 Detachment.add({
 	name: { type: String, required: true },
+	image: { type: Types.CloudinaryImage },
+	desc: { type: String, required: false },
 });
 
 Detachment.relationship({ ref: 'Post', path: 'posts', refPath: 'detachments' });
