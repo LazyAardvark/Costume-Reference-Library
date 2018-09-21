@@ -14,6 +14,7 @@ Detachment.add({
 	name: { type: String, required: true },
 	image: { type: Types.CloudinaryImage },
 	desc: { type: String, required: false },
+	link: { type: Types.Url, required: false},
 });
 
 Detachment.relationship({ ref: 'Post', path: 'posts', refPath: 'detachments' });

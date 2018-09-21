@@ -11,8 +11,8 @@ var handlebars = require('express-handlebars');
 // and documentation.
 
 keystone.init({
-	'name': 'Imperial Costume Library',
-	'brand': 'Imperial Costume Library',
+	'name': 'Imperial Reference Collection',
+	'brand': 'Imperial Reference Collection',
 
 	'sass': 'public',
 	'static': 'public',

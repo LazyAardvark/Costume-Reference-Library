@@ -86,7 +86,7 @@ module.exports = function () {
 	// Returns an html-string of the detachments on the post.
 	// By default, detachments are separated by commas.
 	// input. detachments:['tech', 'js']
-	// output. 'Filed Undder <a href="blog/tech">tech</a>, <a href="blog/js">js</a>'
+	// output. 'Filed Undder <a href="library/tech">tech</a>, <a href="library/js">js</a>'
 
 	_helpers.detachmentList = function (detachments, options) {
 		var autolink = _.isString(options.hash.autolink) && options.hash.autolink === 'false' ? false : true;
@@ -101,7 +101,7 @@ module.exports = function () {
 			if (autolink) {
 				return _.map(tags, function (tag) {
 					return linkTemplate({
-						url: ('/blog/' + tag.key),
+						url: ('/library/' + tag.key),
 						text: _.escape(tag.name),
 					});
 				}).join(separator);
@@ -193,18 +193,18 @@ module.exports = function () {
 
 	// Direct url link to a specific post
 	_helpers.postUrl = function (postSlug, options) {
-		return ('/blog/post/' + postSlug);
+		return ('/library/post/' + postSlug);
 	};
 
 	// might be a ghost helper
-	// used for pagination urls on blog
+	// used for pagination urls on library
 	_helpers.pageUrl = function (pageNumber, options) {
-		return '/blog?page=' + pageNumber;
+		return '/library?page=' + pageNumber;
 	};
 
-	// create the detachment url for a blog-detachment page
+	// create the detachment url for a library-detachment page
 	_helpers.detachmentUrl = function (detachmentSlug, options) {
-		return ('/blog/' + detachmentSlug);
+		return ('/library/' + detachmentSlug);
 	};
 
 	// ### Pagination Helpers
