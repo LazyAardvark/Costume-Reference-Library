@@ -22,9 +22,9 @@
 		<div class="col-sm-4 col-md-3">
 			<h2>Detachments</h2>
 			<div class="list-group">
-				<a href="/library" class="active list-group-item">All Detachments</a>
+				<a href="/library" {{#if filters.detachment}} class="list-group-item" {{else}} class="list-group-item active"{{/if}}>All Detachments</a>
 				{{# each data.detachments }}
-				<a href="{{detachmentUrl key}}" {{#if isRTL}}class="align-right"{{/if}} class=" list-group-item">{{name}}</a>
+				<a href="{{detachmentUrl key}}" {{#ifeq key ../filters.detachment}} class="list-group-item active" {{else}} class="list-group-item"{{/ifeq}}>{{name}}</a>
 				{{/each}}
 			</div>
 		</div>
